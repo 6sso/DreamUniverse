@@ -23,7 +23,8 @@ import openai
 import os
 import csv
 
-#openai.api_key = 'insérer votre clé api ici' 
+#openai.api_key = ' ' 
+
 
 
 
