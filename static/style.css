@@ -1,0 +1,47 @@
+h1
+{
+	color: white;
+}
+
+h2
+{
+	color: white;
+}
+
+a
+{
+	color: white;
+}
+
+p
+{
+	color: white;
+}
+
+input[type="text"]{
+  margin: 100px;
+  padding: 30px 150px;
+}
+
+button{
+  margin: 30px;
+  padding: 30px;
+}
+
+body
+{
+	background-image: url("ciel2.jpg");
+	background-size: cover;
+	
+
+}
+#carte
+{
+	width: 1000px;
+	margin:0 auto;
+	background color: white;
+	text-align: center;
+	align-content: center;
+
+}
+

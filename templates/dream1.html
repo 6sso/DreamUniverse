@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Dream Universe</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+    </head>
+
+    <body>
+        <div id="carte"> 
+            <h1>Dream Universe</h1>
+            <!--<a href="Dream2.html"><p>What did you dream about last night ?</p></a>-->
+            <form method="POST" onsubmit="return executerTraitement()">
+                <input type="text" id="reve" style="width: 150px;" placeholder="Tell me about your dream"maxlength="100"> 
+                <button type="submit" value="envoyer">Analyse my dream</button>
+            </form>
+            <h2>Analyse de votre rêve : </h2>
+            <p id="resultat"></p> <!-- C'est ici que le résultat sera affiché -->
+        </div>
+
+        <script>
+            function executerTraitement() { 
+			    const reve = document.getElementById('reve').value; 
+			    fetch('http://127.0.0.1:5000/analyser_reve', { // la methode fetch envoie le reve
+			        method: 'POST',
+			        headers: {
+			            'Content-Type': 'application/json' 
+			        },
+			        body: JSON.stringify({reve: reve}) // Envoie le texte du formulaire avec la requête
+			    }) // fin du fetch
+			    .then(response => response.text())
+			    .then(data => document.getElementById('resultat').textContent = data)
+			    .catch(error => console.error('Erreur:', error));
+			    
+			    return false;
+			}
+
+        </script>
+    </body>
+</html>
