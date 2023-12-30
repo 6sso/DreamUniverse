@@ -8,8 +8,9 @@ Created on Sun Jun  4 11:17:21 2023
 #3 lignes de code à rentrer séparément dans le terminal avant de lancer le code python
 # se placer dans le repertoire Website dans le terminal avec la commande cd
 #export FLASK_APP=main (nom du fichier à la place de main)
-#export FLASK_ENV=development
 #flask run
+#export FLASK_APP=main;export ASK_ENV=development;flask run
+
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -23,13 +24,8 @@ import openai
 import os
 import csv
 
-#openai.api_key = ' ' 
-
-
-
-
-
-
+ #openai.api_key = ''
+ 
 app = Flask(__name__)
 limiter = Limiter(key_func=get_remote_address, app=app)
 
@@ -55,15 +51,17 @@ def analyse(text):
 
 
 @app.route('/analyser_reve', methods=['GET', 'POST', 'OPTIONS'])
-@limiter.limit("8 per day")  # Vous pouvez ajuster ces limites selon vos besoins
+#@limiter.limit("8 per day")  # Vous pouvez ajuster ces limites selon vos besoins
 
 def hello():
 	#print("ca fonctionne")
 	if request.method == 'POST': #SI LA REQUETE EST BIEN EN POST
 		data = request.get_json()  # Récupère les données JSON envoyées avec la requête
-		if data is not None: # ET QUE LES DONNEES NE SONT PAS NULLES 
-			reve = data.get('reve', '')  # ALORS la fonction récupère le texte du formulaire depuis les données JSON
+		reve = data.get('reve', '')  # ALORS la fonction récupère le texte du formulaire depuis les données JSON
+		if (len(reve)>0): # ET QUE LES DONNEES NE SONT PAS NULLES 
+			
 			print(reve)
+			print("taille : ",len(reve))
 			# Ouverture du fichier CSV en mode écriture avec with (dès qu'on sort du with, le fichier se ferme)
 			with open('data.csv', 'a', newline='',encoding='utf-8') as csvfile:
 				# Création de l'objet écrivain CSV
@@ -77,9 +75,6 @@ def hello():
 	else : 
 		reve_analysed = " " # si la requête n'est pas en post on affiche rien 
 	return f'{reve_analysed}' #le f après le return permet de mettre une variable dans la chaine de caractère qu'on renvoie
-
-
-
 
 
 

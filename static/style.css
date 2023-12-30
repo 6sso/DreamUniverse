@@ -1,3 +1,19 @@
+body {
+    
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-image: url("ciel2.jpg");
+	background-size: cover;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 h1
 {
 	color: white;
@@ -6,6 +22,7 @@ h1
 h2
 {
 	color: white;
+  margin-top: 35px;
 }
 
 a
@@ -18,23 +35,22 @@ p
 	color: white;
 }
 
-input[type="text"]{
-  margin: 100px;
-  padding: 30px 150px;
+textarea{
+  width: calc(100% - 120px); 
+    min-height: 100px;
+    margin-right: 10px; 
+    padding: 10px;
+    resize: vertical; 
 }
 
 button{
-  margin: 30px;
+  
   padding: 30px;
+  cursor: pointer;
 }
 
-body
-{
-	background-image: url("ciel2.jpg");
-	background-size: cover;
-	
 
-}
+
 #carte
 {
 	width: 1000px;
